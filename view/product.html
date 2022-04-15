@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+   <!-- ======= About Section ======= -->
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row">
+        <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+          <img src="{{item.image.url}}" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
+          <h3><i>{{item.name}}</i></h3>
+          <p class="fst-italic">
+           <h5>by {{item.artist}}</h5>
+           <h6>{{item.medium}}</h6>
+           <h6>{{item.size}}</h6>
+          <br>
+          <div class="product-price">
+          <h4> <span class="new-price ">TK. {{item.price}}</span></h4>
+             
+         </div><!-- End .product-price -->
+            
+         <a href="{% url 'controller:add-to-cart' pk=item.pk %}"class="btn btn-outline-dark add-btn btn-lg">Add To Cart</a>
+         <br>
+         <br>
+         <br>
+         <div class="card card-box card-sm">
+          <div class="card-header" id="product-info-heading">
+              <h2 class="card-title">
+                  <a role="button" data-toggle="collapse" href="#product-accordion-info" aria-expanded="true" aria-controls="product-accordion-info">
+                      <h5>Additional Description</h5>
+                  </a>
+              </h2>
+          </div><!-- End .card-header -->
+          <div id="product-accordion-info" class="collapse show" aria-labelledby="product-info-heading" data-parent="#product-accordion">
+              <div class="card-body">
+                  <div class="product-desc-content">
+                      <p> {{item.description}}</p>
+                  </div><!-- End .product-desc-content -->
+          
+              </div><!-- End .card-body -->
+          </div><!-- End .collapse -->
+      </div><!-- End .card -->
+            
+        </div>
+      </div>
+
+
+            
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+ 
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block body %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>Explore The Art</h1>
+          <h2>Picked By Our Curators<span>.</span></h2>
+          <br>
+          <a class="btn btn-outline-light add-btn" href="#portfolio">Browse</a>
+        </div>
+      </div>
+
+      
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/William_Pars_-_The_Grotto_at_Posillipo.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
+            <h3>Featured This Week</h3>
+            <p class="fst-italic">
+             <h4>The Grotto at Posillipo</h4>
+             <h5>by William Pars</h5>
+            </p>
+            <ul>
+              <li><i class="ri-check-line"></i> Watercolor over Pencil</li>
+              <li><i class="ri-check-line"></i> Height: 39 cm (15.3 in); Width: 51.5 cm (20.2 in)</li>
+              <li><i class="ri-check-line"></i> 1781</li>
+            </ul>
+            <p>
+              William Pars was an English watercolour portrait and landscape painter, draughtsman, and illustrator.
+
+              Pars was born in London, the son of a metal engraver. He studied at "Shipley's Drawing School" (in the Strand), St. Martin's Lane Academy, and also in the Duke of Richmond's Gallery. In 1761, at the age of 17, he exhibited a portrait and miniatures at the Incorporated Society of Artists, and became a member of the Free Society of Artists in 1763. In 1764, he obtained the Society of Arts' medal for an historical painting.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+   <!-- ======= Cta Section ======= -->
+   <section id="cta" class="cta">
+    <div class="container" data-aos="zoom-in">
+
+      <div class="text-center">
+        <h3>Visit Our Gallery</h3>
+        <p> Virtually explore the artwroks that has been showcased in our Gallery.</p>
+        <a class="cta-btn" href="#">Gallery</a>
+      </div>
+
+    </div>
+  </section><!-- End Cta Section -->
+
+
+   
+<!-- ======= Products Section ======= -->
+
+
+<section id="portfolio" class="portfolio">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Collection</h2>
+      <p>Available Artworks for Sale</p>
+    </div>
+	<div class="row">
+    {% for product in products %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{product.image.url}}" style="width:100%"> 
+			<div class="box-element product">
+				<h6><strong>by {{product.artist}}</strong></h6>
+				<h5 style="display: inline-block"><em>{{product.name}}</em></h5>
+        <br>
+				<h6 style="display: inline-block">{{product.category}}</h6>
+        <br>
+        <h6 style="display: inline-block"><strong>TK. {{product.price}}</strong></h6>
+    
+        <br>
+        <br>
+				<a class="btn btn-outline-info add-btn btn-sm" href="{{product.get_product_url}}">Details</a>
+
+    
+			</div>
+		</div>
+    {% endfor %}
+	</div>
+
+
+
+<!-- End Portfolio Section -->
+
+
+ 
+
+  
+
+ 
+
+  </main><!-- End #main -->
+
+{% endblock %}
