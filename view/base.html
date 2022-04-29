@@ -24,7 +24,9 @@
 # General
 --------------------------------------------------------------*/
 
-
+.table-borderless{
+  border: 1px solid;
+}
 .cart {
   color: rgb(255, 179, 0);
 
@@ -1738,7 +1740,9 @@ section {
               {% endfor %}
             </ul>
           </li>
+          <li><a class="nav-link scrollto " href="{% url 'controller:profile' %}">Profile</a></li>
         </ul>
+
         <i class="bi bi-list mobile-nav-toggle"></i>
         <ul>
           {% csrf_token %}

@@ -3,7 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.db.models import fields
-from controller.models import BillingAddress, Order
+from controller.models import BillingAddress, Order, Profile
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('__all__')
+        exclude = ('user', )
 
 class RegistrationForm(UserCreationForm):
     class Meta:

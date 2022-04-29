@@ -1,12 +1,12 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from controller.forms import RegistrationForm, BillingAddressForm, PaymentMethodForm
+from controller.forms import ProfileForm, RegistrationForm, BillingAddressForm, PaymentMethodForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate 
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
-from controller.models import Category, Product, Cart, Order, BillingAddress, Banner
+from controller.models import Profile, Category, Product, Cart, Order, BillingAddress, Banner
 from django.views.generic import TemplateView
 
 
@@ -181,3 +181,30 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+
+class ProfileView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        orders = Order.objects.filter(user=request.user, ordered=True)
+        billingaddress = BillingAddress.objects.get(user=request.user)
+        billingaddress_form = BillingAddressForm(instance=billingaddress)
+        profile_obj = Profile.objects.get(user=request.user)
+        profileForm = ProfileForm(instance=profile_obj)
+
+        context = {
+            'orders': orders,
+            'billingaddress': billingaddress_form,
+            'profileForm': profileForm
+        }
+        return render(request, 'profile.html', context)
+
+    def post(self, request, *args, **kwargs):
+        if request.method == 'post' or request.method == 'POST':
+            billingaddress = BillingAddress.objects.get(user=request.user)
+            billingaddress_form = BillingAddressForm(request.POST, instance=billingaddress)
+            profile_obj = Profile.objects.get(user=request.user)
+            profileForm = ProfileForm(request.POST, instance=profile_obj)
+            if billingaddress_form.is_valid() or profileForm.is_valid():
+                billingaddress_form.save()
+                profileForm.save()
+                return redirect('controller:profile')
