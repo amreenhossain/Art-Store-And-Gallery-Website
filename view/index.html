@@ -10,7 +10,7 @@
           <h1>Explore The Art</h1>
           <h2>Picked By Our Curators<span>.</span></h2>
           <br>
-          <a class="btn btn-outline-light add-btn" href="#portfolio">Browse</a>
+          <a class="btn btn-outline-light add-btn" href="{% url 'controller:collection' %}">Browse Products</a>
         </div>
       </div>
 
@@ -56,8 +56,8 @@
 
       <div class="text-center">
         <h3>Visit Our Gallery</h3>
-        <p> Virtually explore the artwroks that has been showcased in our Gallery.</p>
-        <a class="cta-btn" href="#">Gallery</a>
+        <p> Get the experience of visiting our main gallery, virtually.</p>
+        <a class="cta-btn" href="{% url 'controller:gallery' %}">Gallery</a>
       </div>
 
     </div>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}  
+<!-- ======= Products Section ======= -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+<section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+  
+      <div class="section-title">
+        <h2>Collection</h2>
+        <h7><p>Available Artworks for Sale</p></h7>
+      </div>
+      <div class="row">
+      {% for product in products %}
+          <div class="col-lg-4">
+              <img class="thumbnail" src="{{product.image.url}}" style="width:100%"> 
+              <div class="box-element product">
+                  <h6><strong>by {{product.artist}}</strong></h6>
+                  <h5 style="display: inline-block"><em>{{product.name}}</em></h5>
+          <br>
+                  <h6 style="display: inline-block">{{product.category}}</h6>
+          <br>
+          <h6 style="display: inline-block"><strong>TK. {{product.price}}</strong></h6>
+      
+          <br>
+          <br>
+                  <a class="btn btn-outline-info add-btn btn-sm" href="{{product.get_product_url}}">Details</a>
+  
+      
+              </div>
+          </div>
+      {% endfor %}
+      </div>
+  
+  
+</div>
+  <!-- End Portfolio Section -->
+  {% endblock %}  

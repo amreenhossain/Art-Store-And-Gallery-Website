@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+   <!-- ======= About Section ======= -->
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <form action="" method="post">
+    {% csrf_token %}
+   <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row">
+        <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <div class="col-sm-6">
+                {{ billing_address.as_p }}
+
+            </div><!-- End .col-sm-6 -->
+        </div>
+        <aside class="col-lg-3">
+            <div class="summary">
+                <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+                <table class="table table-summary">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for item in order_item %}
+                        <tr>
+                            <td><a href="#">{{ item.item.name }}</a></td>
+                            <td>${{ item.get_total }}</td>
+                        </tr>
+                    {% endfor %}
+                        <tr class="summary-subtotal">
+                            <td>Subtotal:</td>
+                            <td>TK. {{ order_total }}</td>
+                        </tr><!-- End .summary-subtotal -->
+                        <tr>
+                            <td>Shipping:</td>
+                            <td>Free shipping</td>
+                        </tr>
+                        <tr class="new-price">
+                            <td>Total:</td>
+                            <td>TK. {{ order_total }}</td>
+                            
+                        </tr><!-- End .summary-total -->
+                    </tbody>
+                </table><!-- End .table table-summary -->
+                <br>
+
+                <div class="accordion-summary" id="accordion-payment">
+                    <div class="card"></div>
+                      {{payment_method.as_p}}
+                
+                
+                        <br>
+                </div><!-- End .accordion -->
+
+                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                    <span class="btn-text"  href="/">Place Order</span>
+                    <a class="btn-hover-text " >Proceed to Checkout</a>
+                </button>
+            </div><!-- End .summary -->
+        </aside><!-- End .col-lg-3 -->
+    </div><!-- End .row -->
+</form>
+</div><!-- End .container -->
+</div><!-- End .checkout -->
+</div><!-- End .page-content -->
+</main><!-- End .main -->
+
+            
+        </div>
+      </div>
+
+
+            
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+ 
+
+{% endblock %}
