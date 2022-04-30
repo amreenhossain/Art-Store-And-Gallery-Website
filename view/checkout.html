@@ -47,7 +47,7 @@
                     {% for item in order_item %}
                         <tr>
                             <td><a href="#">{{ item.item.name }}</a></td>
-                            <td>${{ item.get_total }}</td>
+                            <td>TK. {{ item.get_total }}</td>
                         </tr>
                     {% endfor %}
                         <tr class="summary-subtotal">
