@@ -10,7 +10,7 @@
           <h1>Explore The Art</h1>
           <h2>Picked By Our Curators<span>.</span></h2>
           <br>
-          <a class="btn btn-outline-light add-btn" href="{% url 'controller:collection' %}">Browse Products</a>
+          <a class="get-started-btn" href="{% url 'controller:collection' %}">Browse Products</a>
         </div>
       </div>
 
@@ -86,10 +86,8 @@
 				<h6 style="display: inline-block">{{product.category}}</h6>
         <br>
         <h6 style="display: inline-block"><strong>TK. {{product.price}}</strong></h6>
-    
         <br>
-        <br>
-				<a class="btn btn-outline-info add-btn btn-sm" href="{{product.get_product_url}}">Details</a>
+				<a class="details-btn " href="{{product.get_product_url}}">Details</a>
 
     
 			</div>

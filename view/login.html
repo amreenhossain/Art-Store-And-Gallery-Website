@@ -22,7 +22,7 @@
 .body {
     position: relative;
     width: 680px;
-    height: 660px;
+    height: 680px;
     margin: 20px auto;
     border: 1px solid #dddd;
     border-radius: 18px;
@@ -193,13 +193,13 @@ body {
                         <p class="mb-1 h-1"><input type="password" name="password" id="password"></p>
                     </label>
                     <label>
-                        <button class="btn-primary">Log in<span class="fas fa-chevron-right ms-1"></span></button>
+                        <button class="btn btn-dark">Log in<span class="fas fa-chevron-right ms-1"></span></button>
                     </label>
                     </form>
                     </p>
-                    
+                   <label> <h5>Do Not Have An Account?...<button><a class="btn btn-dark" href="{% url 'controller:user_register' %}"> Register</a></button></h5></label>
+                  
                 </div>
-                
             </div> <span class="fas fa-times"></span>
         </div>
     </div>

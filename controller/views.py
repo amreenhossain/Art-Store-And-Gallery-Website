@@ -60,23 +60,26 @@ class CheckoutTemplateView(TemplateView):
                     return redirect('controller:index')
 
 def add_to_cart(request, pk):
-    item = get_object_or_404(Product, pk=pk)
-    order_item = Cart.objects.get_or_create(item=item, user=request.user, purchased=False)
-    order_qs = Order.objects.filter(user=request.user, ordered=False)
-    if order_qs.exists():
-        order = order_qs[0]
-        if order.orderitems.filter(item=item).exists():
-            order_item[0].quantity += 1
-            order_item[0].save()
-            return redirect('controller:index')
+    if request.user.is_authenticated:
+        item = get_object_or_404(Product, pk=pk)
+        order_item = Cart.objects.get_or_create(item=item, user=request.user, purchased=False)
+        order_qs = Order.objects.filter(user=request.user, ordered=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            if order.orderitems.filter(item=item).exists():
+                order_item[0].quantity += 1
+                order_item[0].save()
+                return redirect('controller:collection')
+            else:
+                order.orderitems.add(order_item[0])
+                return redirect('controller:collection')
         else:
+            order = Order(user=request.user)
+            order.save()
             order.orderitems.add(order_item[0])
-            return redirect('controller:index')
+            return redirect('controller:collection')
     else:
-        order = Order(user=request.user)
-        order.save()
-        order.orderitems.add(order_item[0])
-        return redirect('controller:index')
+        return redirect('controller:user_login')
 
 def cart_view(request):
     if request.user.is_authenticated:
@@ -89,8 +92,10 @@ def cart_view(request):
                 'order': order
             }
             return render(request, 'cart.html', context)
+        else:
+          return redirect('controller:index')  
     else:
-        return redirect('controller:login')
+        return redirect('controller:user_login')
     
 def remove_item_from_cart(request, pk):
     item = get_object_or_404(Product, pk=pk)
@@ -184,6 +189,7 @@ def user_logout(request):
 
 
 class ProfileView(TemplateView):
+    
     def get(self, request, *args, **kwargs):
         orders = Order.objects.filter(user=request.user, ordered=True)
         billingaddress = BillingAddress.objects.get(user=request.user)
@@ -208,3 +214,5 @@ class ProfileView(TemplateView):
                 billingaddress_form.save()
                 profileForm.save()
                 return redirect('controller:profile')
+
+    
